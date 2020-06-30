@@ -21,6 +21,10 @@ mongoose
 
 app.use(express.json());
 
+const registration = require('./routes/registration')
+
+app.use('/register', registration);
+
 const port = process.env.PORT || 4500;
 app.listen(port, () => {
     console.log(`Express server started at port ${port}`);
