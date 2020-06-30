@@ -1,0 +1,30 @@
+{
+  "name": "makedeveloper",
+  "version": "1.0.0",
+  "description": "Platform to bring together open source enthusiasts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/makedeveloper/makeweb-backend.git"
+  },
+  "keywords": [
+    "backend",
+    "express",
+    "node"
+  ],
+  "author": "makedeveloper",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/makedeveloper/makeweb-backend/issues"
+  },
+  "homepage": "https://github.com/makedeveloper/makeweb-backend#readme",
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.20"
+  }
+}
