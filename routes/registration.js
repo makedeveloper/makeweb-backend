@@ -32,13 +32,10 @@ router.post("/", async (req, res) => {
     if (user)
         return res
             .status(400)
-            .send("This email is already associated with another account");
+            .send("This email address is already associated with another account");
 
     user = await User.findOne({ username: req.body.username });
-    if (user)
-        return res
-            .status(400)
-            .send("This username is not available");
+    if (user) return res.status(400).send("This username is not available");
 
     user = new User(_.pick(req.body, ["fullname", "username", "email"]));
 
@@ -48,7 +45,10 @@ router.post("/", async (req, res) => {
 
     try {
         await user.save();
-        res.send({ token: user.generateAuthToken(), userId: user._id });
+        res.send({
+            "x-auth-token": user.generateAuthToken(),
+            userId: user._id
+        });
     } catch (e) {
         console.log(e);
         res.status(500).send("Internal server error");

@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
     },
     username: {
         type: String,
+        unique: true,
         trim: true
     },
     email: {
@@ -29,4 +30,3 @@ userSchema.methods.generateAuthToken = () => {
 const User = new mongoose.model('User', userSchema, "Users");
 
 module.exports.User = User;
-// module.exports.generateAuthToken = this.generateAuthToken;
