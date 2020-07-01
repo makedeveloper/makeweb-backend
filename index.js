@@ -22,8 +22,10 @@ mongoose
 app.use(express.json());
 
 const registration = require('./routes/registration')
+const login = require('./routes/login')
 
 app.use('/register', registration);
+app.use('/login', login);
 
 const port = process.env.PORT || 4500;
 app.listen(port, () => {
