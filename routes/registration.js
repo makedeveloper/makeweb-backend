@@ -32,7 +32,9 @@ router.post("/", async (req, res) => {
     if (user)
         return res
             .status(400)
-            .send("This email address is already associated with another account");
+            .send(
+                "This email address is already associated with another account"
+            );
 
     user = await User.findOne({ username: req.body.username });
     if (user) return res.status(400).send("This username is not available");
@@ -47,7 +49,7 @@ router.post("/", async (req, res) => {
         await user.save();
         res.send({
             "x-auth-token": user.generateAuthToken(),
-            userId: user._id
+            userId: user._id,
         });
     } catch (e) {
         console.log(e);
