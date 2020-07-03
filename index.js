@@ -23,9 +23,11 @@ app.use(express.json());
 
 const registration = require('./routes/registration')
 const login = require('./routes/login')
+const project = require('./routes/project')
 
 app.use('/register', registration);
 app.use('/login', login);
+app.use('/project', project);
 
 const port = process.env.PORT || 4500;
 app.listen(port, () => {
