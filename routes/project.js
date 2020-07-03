@@ -62,19 +62,10 @@ router.post("/new", userAuth, async (req, res) => {
         ])
     );
     project.userId = req.user._id;
-    console.log(req.user._id);
 
-    try {
-        await project.save();
-        return res.status(201).send(project._id);
-    } catch (e) {
-        let errors = [];
-        for (field in e.errors) {
-            errors.push(e.errors[field].message);
-        }
-        console.log(errors);
-        res.status(500).send(errors);
-    }
+    await project.save();
+    return res.status(201).send(project._id);
+    
 });
 
 module.exports = router;

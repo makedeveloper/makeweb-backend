@@ -45,16 +45,11 @@ router.post("/", async (req, res) => {
     const hashedPwd = await bcrypt.hash(req.body.password, salt);
     user.password = hashedPwd;
 
-    try {
-        await user.save();
-        res.send({
-            "x-auth-token": user.generateAuthToken(),
-            username: user.username,
-        });
-    } catch (e) {
-        console.log(e);
-        res.status(500).send("Internal server error");
-    }
+    await user.save();
+    res.send({
+        "x-auth-token": user.generateAuthToken(),
+        username: user.username,
+    });
 });
 
 module.exports = router;
