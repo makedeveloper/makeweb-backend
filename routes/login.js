@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
 
     return res.send({
         "x-auth-token": user.generateAuthToken(),
-        userId: user._id,
+        username: user.username,
     });
 });
 

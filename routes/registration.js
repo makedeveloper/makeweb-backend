@@ -49,7 +49,7 @@ router.post("/", async (req, res) => {
         await user.save();
         res.send({
             "x-auth-token": user.generateAuthToken(),
-            userId: user._id,
+            username: user.username,
         });
     } catch (e) {
         console.log(e);
