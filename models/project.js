@@ -20,12 +20,22 @@ const projectSchema = new mongoose.Schema({
         required: function () { this.isInitiated }
     },
     stacks: {
-        type: String,
-        required: true,
+        type: Array,
+        validate: {
+            validator: function (v) {
+                return v.length > 0;
+            },
+            message: "A project must have atleast one stack."
+        }
     },
     fieldOfStudy: {
-        type: String,
-        required: true,
+        type: Array,
+        validate: {
+            validator: function (v) {
+                return v.length > 0;
+            },
+            message: "A project must have atleast one field of study."
+        }
     },
     lookingFor: {
         type: String,

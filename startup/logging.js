@@ -3,7 +3,9 @@ require("express-async-errors");
 
 module.exports = function () {
     winston.exceptions.handle(
-        new winston.transports.Console({ prettyPrint: true }),
+        new winston.transports.Console({
+            format: winston.format.prettyPrint(),
+        }),
         new winston.transports.File({
             filename: "./log/uncaughtExceptions.log",
         })
@@ -15,7 +17,7 @@ module.exports = function () {
 
     winston.add(
         new winston.transports.Console({
-            level: "info",
+            level: "debug",
             format: winston.format.combine(winston.format.prettyPrint()),
         })
     );
@@ -23,7 +25,7 @@ module.exports = function () {
         new winston.transports.File({
             filename: "./log/logfile.log",
             level: "warn",
-            format: winston.format.combine(winston.format.prettyPrint()),
+            format: winston.format.combine(winston.format.timestamp(), winston.format.prettyPrint()),
         })
     );
 };
