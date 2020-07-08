@@ -22,16 +22,155 @@ To run Backend
 ```bash
 clone this repo 
 ```
+Determine a private key to be used in the backend. Ideally, the key should be a secure alphanumeric key. *The same key must be used in every subsequent initialization of the backend* 
+
 Then run this command in the cloned directory
 ```bash
-set jwtPrivateKey=SecureKey //for windows
-export jwtPrivateKey=SecureKey //for linux and mac
+set jwtPrivateKey=<Your Private Key> //for windows
+export jwtPrivateKey=<Your Private Key> //for linux and mac
 node --no-deprecation index.js
 ```
 
-Application will run on port 4500
+APIs will be served on port 4500
 
-URL: http://localhost:4500/
+## API Structure
+
+### Registration  
+endpoint: /register  
+type: POST  
+request-data:
+```
+{
+    "fullname": "David Feachen",
+    "username": "david123",
+    "email": "david@gmail.com",
+    "password": "123456Az",
+    "confirm_password": "123456Az"
+}
+```
+response-data:  
+```
+{
+    "username": "david789"
+}
+```
+response-header:  
+```
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjA2MGM0NjJhY2ZiYzQ4YzRiM2NmNTQiLCJpYXQiOjE1OTQyMzE4Nzl9.3H578cjtratWVaSien93nRLdqhRgKJmqmbdZr4Mc6yQ
+```
+  
+### Login  
+endpoint: /login  
+type: POST  
+request-data:
+```
+{
+    "email": "david@gmail.com",
+    "password": "123456Az"
+}
+```
+response-data:  
+```
+{
+    "username": "david789"
+}
+```
+response-header:  
+```
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjA2MGM0NjJhY2ZiYzQ4YzRiM2NmNTQiLCJpYXQiOjE1OTQyMzE4Nzl9.3H578cjtratWVaSien93nRLdqhRgKJmqmbdZr4Mc6yQ
+```
+  
+## Projects
+### Create a new project
+endpoint: /project/new  
+type: POST  
+request-header: x-auth-token  
+request-data:
+```
+{
+    "name": "Make Developer",
+    "isInitiated": true,
+    "link": "https://makedeveloper.tech", // send this attribute only if isInitiated = true
+    "stacks": ["MERN", "MEAN"],
+    "fieldOfStudy": ["Web Dev", "Machine Learning"],
+    "lookingFor": "mentor",
+    "idea": "Open source collaboration"
+}
+```
+request-response: 
+```
+"5f05fdbb2fe6272c7822b026" //ID of the newly created project
+```
+  
+### View all projects of current user
+endpoint: /project  
+type: GET  
+request-header: x-auth-token  
+response-data: array of json objects, each object being one project
+```
+// sample response
+[
+    {
+        "stacks": [
+            "MERN",
+            "MEAN"
+        ],
+        "fieldOfStudy": [
+            "Web Dev",
+            "Machine Learning"
+        ],
+        "_id": "5f05fd8f2fe6272c7822b023",
+        "name": "Make Developer",
+        "isInitiated": true,
+        "link": "http://domain.com",
+        "lookingFor": "mentor",
+        "idea": "Open source collaboration",
+        "userId": "5efb94ea93f42e431cb8bde4",
+        "__v": 0
+    },
+    {
+        "stacks": [
+            "MERN",
+        ],
+        "fieldOfStudy": [
+            "Web Dev",
+        ],
+        "_id": "5f0611532acfbc48c4b3cf61",
+        "name": "Make Developer",
+        "isInitiated": true,
+        "link": "http://domain.com",
+        "lookingFor": "mentor",
+        "idea": "Open source collaboration",
+        "userId": "5efb94ea93f42e431cb8bde4",
+        "__v": 0
+    }
+]
+```
+### View particular project of current user
+endpoint: /project/<projectID>  
+type: GET  
+request-header: x-auth-token  
+response-data: json object of the project
+```
+  {
+    "stacks": [
+        "MERN",
+        "MEAN"
+    ],
+    "fieldOfStudy": [
+        "Web Dev",
+        "Machine Learning"
+    ],
+    "_id": "5f05fd8f2fe6272c7822b023",
+    "name": "Make Developer",
+    "isInitiated": true,
+    "link": "http://domain.com",
+    "lookingFor": "mentor",
+    "idea": "Open source collaboration",
+    "userId": "5efb94ea93f42e431cb8bde4",
+    "__v": 0
+}
+```
 
 This is our basic UI for the front page (For Frontend visit this repo : [makeweb-frontend](https://github.com/makedeveloper/makeweb-frontend)
 
