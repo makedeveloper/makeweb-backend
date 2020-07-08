@@ -46,8 +46,7 @@ router.post("/", async (req, res) => {
     user.password = hashedPwd;
 
     await user.save();
-    res.send({
-        "x-auth-token": user.generateAuthToken(),
+    res.header({ "x-auth-token": user.generateAuthToken() }).send({
         username: user.username,
     });
 });

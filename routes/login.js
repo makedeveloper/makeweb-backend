@@ -20,7 +20,8 @@ router.post("/", async (req, res) => {
     const { error } = validateLoginData(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
-    if (!req.body.email && !req.body.username) return res.status(400).send("Email address/username is required");
+    if (!req.body.email && !req.body.username)
+        return res.status(400).send("Email address/username is required");
 
     const errorParam = req.body.email ? "email address" : "username";
 
@@ -33,8 +34,7 @@ router.post("/", async (req, res) => {
     if (!validPwd)
         return res.status(400).send(`Invalid ${errorParam} or password`);
 
-    return res.send({
-        "x-auth-token": user.generateAuthToken(),
+    return res.header({ "x-auth-token": user.generateAuthToken() }).send({
         username: user.username,
     });
 });
