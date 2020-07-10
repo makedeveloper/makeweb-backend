@@ -36,7 +36,12 @@ router.get('/', userAuth, async(req, res) => {
     res.send(projects);
 })
 
-router.get('/:projectId', userAuth, async(req, res) => {
+router.get('/all', async(req, res) => {
+    const projects = await Project.find().select('name stacks idea');
+    res.send(projects)
+})
+
+router.get('/:projectId', async(req, res) => {
     if (!mongoose.Types.ObjectId.isValid(req.params.projectId))
         return res.status(400).send(`${req.params.projectId} is not a valid ID`);
 
