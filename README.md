@@ -171,6 +171,39 @@ response-data: json object of the project
     "__v": 0
 }
 ```
+## Join Project
+### Join an existing project
+endpoint: /collaborator/join  
+type: POST  
+request-header: x-auth-token  
+request-data:
+```
+{
+    "projectId": "5f07411154dd016500a8d585",
+    "stacks": ["MERN", "MEAN"],
+    "fieldOfStudy": ["Web Dev", "Machine Learning"],
+    "experienceLevel": 5,
+    "joinAs": "mentee",
+    "note": "sample"        //optional. Do NOT send if note is empty
+}
+```
+response-data: `HTTP status 201 (Content Created)`
+    
+### Create a join request for admin to assign later
+endpoint: /collaborator/request  
+type: POST  
+request-header: x-auth-token  
+request-data:
+```
+{
+    "stacks": ["MERN", "MEAN"],
+    "fieldOfStudy": ["Web Dev", "Machine Learning"],
+    "experienceLevel": 5,
+    "joinAs": "mentee",
+    "note": "sample"    //optional. Do NOT send if note is empty
+}
+```
+response-data: `HTTP status 201 (Content Created)`
 
 This is our basic UI for the front page (For Frontend visit this repo : [makeweb-frontend](https://github.com/makedeveloper/makeweb-frontend)
 
