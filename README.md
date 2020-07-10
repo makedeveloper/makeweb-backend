@@ -251,7 +251,7 @@ response-data: `HTTP status 201 (Content Created)`
 ### Add new comment
 endpoint: /comment/< projectId >  
 type: POST  
-request-header: x-auth-token
+request-header: x-auth-token  
 request-data:
 ```
 {
