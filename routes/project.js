@@ -7,6 +7,7 @@ const _ = require("lodash");
 const userAuth = require("../middleware/userAuth");
 const { Project } = require("../models/project");
 const { Comment } = require("../models/comment");
+const { Collaborator } = require("../models/collaborator");
 
 const router = express.Router();
 
@@ -68,7 +69,21 @@ router.get("/:projectId", async (req, res) => {
         select: "username",
     });
 
-    const data = { projectDetails: project, comments: [] };
+    const collaborators = await Collaborator.findOne({
+        projectId: req.params.projectId,
+    }).populate({
+        path: "mentors.userId mentees.userId",
+        select: "username fullname",
+    });
+
+    winston.debug(collaborators);
+
+    const data = {
+        projectDetails: project,
+        comments: [],
+        mentors: [],
+        mentees: [],
+    };
 
     if (comments) {
         comments.comments.forEach((elem) => {
@@ -78,6 +93,22 @@ router.get("/:projectId", async (req, res) => {
                 username: elem.userId.username,
             };
             data.comments.push(comment);
+        });
+    }
+
+    if (collaborators) {
+        collaborators.mentors.forEach((elem) => {
+            let mentor = {
+                username: elem.userId.username,
+            };
+            data.mentors.push(mentor);
+        });
+
+        collaborators.mentees.forEach((elem) => {
+            let mentee = {
+                username: elem.userId.username,
+            };
+            data.mentees.push(mentee);
         });
     }
 
