@@ -210,6 +210,22 @@ response-data: json object of the project
             "timestamp": "2020-07-10T12:30:19.762Z",
             "username": "Sarah121"
         }
+    ],
+    "mentors": [
+        {
+            "username": "David"
+        },
+        {
+            "username": "Sarah"
+        }
+    ],
+    "mentees": [
+        {
+            "username": "Magnus"
+        },
+        {
+            "username": "Harvey"
+        }
     ]
 }
 ```
