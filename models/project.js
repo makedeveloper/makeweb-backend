@@ -39,7 +39,7 @@ const projectSchema = new mongoose.Schema({
     },
     lookingFor: {
         type: String,
-        enum: ["mentor", "student", "both"],
+        enum: ["mentor", "mentee", "both"],
         required: true,
     },
     idea: {

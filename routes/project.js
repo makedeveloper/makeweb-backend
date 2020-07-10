@@ -23,7 +23,7 @@ function validateNewProject(body) {
         fieldOfStudy: Joi.array().required().label("Field of Study"),
         lookingFor: Joi.string()
             .required()
-            .valid("mentor", "student", "both")
+            .valid("mentor", "mentee", "both")
             .label("Looking For"),
         idea: Joi.string().required().label("Project Idea"),
     });
