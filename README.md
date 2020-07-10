@@ -93,13 +93,41 @@ request-data:
     "link": "https://makedeveloper.tech", // send this attribute only if isInitiated = true
     "stacks": ["MERN", "MEAN"],
     "fieldOfStudy": ["Web Dev", "Machine Learning"],
-    "lookingFor": "mentor",
+    "lookingFor": "mentor",         // send one of [mentor, mentee, both]
     "idea": "Open source collaboration"
 }
 ```
-request-response: 
+response-data: 
 ```
 "5f05fdbb2fe6272c7822b026" //ID of the newly created project
+```
+### View all projects 
+endpoint: /project/all  
+type: GET  
+request-header: Not Required  
+response-data: array of json objects, each object being one project  
+```
+// sample response
+[
+    {
+        "stacks": [
+            "MERN",
+            "MEAN"
+        ],
+        "_id": "5f07411154dd016500a8d585",
+        "name": "Make Developer",
+        "idea": "Open source collaboration"
+    },
+    {
+        "stacks": [
+            "MERN",
+            "MEAN"
+        ],
+        "_id": "5f07411754dd016500a8d586",
+        "name": "Make Web",
+        "idea": "Open source collaboration"
+    }
+]
 ```
   
 ### View all projects of current user
@@ -146,10 +174,10 @@ response-data: array of json objects, each object being one project
     }
 ]
 ```
-### View particular project of current user
+### View particular project  
 endpoint: /project/<projectID>  
 type: GET  
-request-header: x-auth-token  
+request-header: Not Required  
 response-data: json object of the project
 ```
   {
