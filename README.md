@@ -93,11 +93,11 @@ request-data:
     "link": "https://makedeveloper.tech", // send this attribute only if isInitiated = true
     "stacks": ["MERN", "MEAN"],
     "fieldOfStudy": ["Web Dev", "Machine Learning"],
-    "lookingFor": "mentor",
+    "lookingFor": "mentor",         // send one of [mentor, mentee, both]
     "idea": "Open source collaboration"
 }
 ```
-request-response: 
+response-data: 
 ```
 "5f05fdbb2fe6272c7822b026" //ID of the newly created project
 ```
