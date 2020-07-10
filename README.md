@@ -175,7 +175,7 @@ response-data: array of json objects, each object being one project
 ]
 ```
 ### View particular project  
-endpoint: /project/<projectID>  
+endpoint: /project/< projectID >  
 type: GET  
 request-header: Not Required  
 response-data: json object of the project
@@ -231,6 +231,13 @@ request-data:
     "note": "sample"    //optional. Do NOT send if note is empty
 }
 ```
+response-data: `HTTP status 201 (Content Created)`
+
+## Comment
+### Add new comment
+endpoint: /comment/< projectId >  
+type: POST  
+request-header: x-auth-token  
 response-data: `HTTP status 201 (Content Created)`
 
 This is our basic UI for the front page (For Frontend visit this repo : [makeweb-frontend](https://github.com/makedeveloper/makeweb-frontend)
