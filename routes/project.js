@@ -54,13 +54,20 @@ router.get("/:projectId", async (req, res) => {
             .status(400)
             .send(`${req.params.projectId} is not a valid ID`);
 
-    const project = await Project.findById(req.params.projectId);
+    const project = await Project.findById(req.params.projectId).populate(
+        "userId",
+        "fullname username"
+    );
     if (!project)
         return res
             .status(400)
             .send(
                 `ID ${req.params.projectId} is not associated with any project`
             );
+
+    let projectDetails = {...project._doc};
+    projectDetails.owner = project.userId;
+    delete projectDetails.userId;
 
     const comments = await Comment.findOne({
         projectId: req.params.projectId,
@@ -77,7 +84,7 @@ router.get("/:projectId", async (req, res) => {
     });
 
     const data = {
-        projectDetails: project,
+        projectDetails: projectDetails,
         comments: [],
         mentors: [],
         mentees: [],
