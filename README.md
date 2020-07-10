@@ -180,23 +180,37 @@ type: GET
 request-header: Not Required  
 response-data: json object of the project
 ```
-  {
-    "stacks": [
-        "MERN",
-        "MEAN"
-    ],
-    "fieldOfStudy": [
-        "Web Dev",
-        "Machine Learning"
-    ],
-    "_id": "5f05fd8f2fe6272c7822b023",
-    "name": "Make Developer",
-    "isInitiated": true,
-    "link": "http://domain.com",
-    "lookingFor": "mentor",
-    "idea": "Open source collaboration",
-    "userId": "5efb94ea93f42e431cb8bde4",
-    "__v": 0
+{
+    "projectDetails": {
+        "stacks": [
+            "MERN",
+            "MEAN"
+        ],
+        "fieldOfStudy": [
+            "Web Dev",
+            "Machine Learning"
+        ],
+        "_id": "5f07411154dd016500a8d585",
+        "name": "Make Developer",
+        "isInitiated": true,
+        "link": "http://domain.com",
+        "lookingFor": "mentor",
+        "idea": "Open source collaboration",
+        "userId": "5efb94ea93f42e431cb8bde4",
+        "__v": 0
+    },
+    "comments": [
+        {
+            "comment": "A sample test comment",
+            "timestamp": "2020-07-10T12:30:19.762Z",
+            "username": "Dave123"
+        },
+        {
+            "comment": "Another sample comment",
+            "timestamp": "2020-07-10T12:30:19.762Z",
+            "username": "Sarah121"
+        }
+    ]
 }
 ```
 ## Join Project
@@ -237,7 +251,14 @@ response-data: `HTTP status 201 (Content Created)`
 ### Add new comment
 endpoint: /comment/< projectId >  
 type: POST  
-request-header: x-auth-token  
+request-header: x-auth-token
+request-data:
+```
+{
+    "comment": "Another sample comment",
+    "timestamp": "2020-07-10T12:30:19.762+00:00"    // Date object
+}
+```
 response-data: `HTTP status 201 (Content Created)`
 
 This is our basic UI for the front page (For Frontend visit this repo : [makeweb-frontend](https://github.com/makedeveloper/makeweb-frontend)
