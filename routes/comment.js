@@ -13,6 +13,7 @@ const router = express.Router();
 function validateComment(body) {
     const schema = Joi.object({
         comment: Joi.string().required().label("Comment"),
+        timestamp: Joi.date().required().label("Timestamp"),
         projectId: Joi.objectid().required().label("Project ID"),
     });
 
@@ -43,7 +44,8 @@ router.post('/:projectId', userAuth, async(req, res) => {
         $push: {
             comments: {
                 userId: req.user._id,
-                comment: req.body.comment
+                comment: req.body.comment,
+                timestamp: req.body.timestamp
             }
         }
     });

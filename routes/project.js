@@ -1,10 +1,12 @@
 const express = require("express");
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+const winston = require("winston");
 const Joi = require("@hapi/joi");
 const _ = require("lodash");
 
 const userAuth = require("../middleware/userAuth");
 const { Project } = require("../models/project");
+const { Comment } = require("../models/comment");
 
 const router = express.Router();
 
@@ -14,11 +16,13 @@ function validateNewProject(body) {
         isInitiated: Joi.boolean()
             .required()
             .label("Project Started ? [True / False]"),
-        link: Joi.string().when('isInitiated', {
-            is: false,
-            then: Joi.forbidden(),
-            otherwise: Joi.required()
-        }).label("Project Link"),
+        link: Joi.string()
+            .when("isInitiated", {
+                is: false,
+                then: Joi.forbidden(),
+                otherwise: Joi.required(),
+            })
+            .label("Project Link"),
         stacks: Joi.array().required().label("Stacks in use"),
         fieldOfStudy: Joi.array().required().label("Field of Study"),
         lookingFor: Joi.string()
@@ -31,25 +35,54 @@ function validateNewProject(body) {
     return postSchema.validate(body);
 }
 
-router.get('/', userAuth, async(req, res) => {
-    const projects = await Project.find({userId: req.user._id});
+router.get("/", userAuth, async (req, res) => {
+    const projects = await Project.find({ userId: req.user._id });
     res.send(projects);
-})
+});
 
-router.get('/all', async(req, res) => {
-    const projects = await Project.find().select('name stacks idea');
-    res.send(projects)
-})
+router.get("/all", async (req, res) => {
+    const projects = await Project.find()
+        .select("name stacks idea")
+        .sort("name");
+    res.send(projects);
+});
 
-router.get('/:projectId', async(req, res) => {
+router.get("/:projectId", async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(req.params.projectId))
-        return res.status(400).send(`${req.params.projectId} is not a valid ID`);
+        return res
+            .status(400)
+            .send(`${req.params.projectId} is not a valid ID`);
 
     const project = await Project.findById(req.params.projectId);
+    if (!project)
+        return res
+            .status(400)
+            .send(
+                `ID ${req.params.projectId} is not associated with any project`
+            );
 
-    if (!project) return res.status(400).send(`ID ${req.params.projectId} is not associated with any project`);
-    res.send(project);
-})
+    const comments = await Comment.findOne({
+        projectId: req.params.projectId,
+    }).populate({
+        path: "comments.userId",
+        select: "username",
+    });
+
+    const data = { projectDetails: project, comments: [] };
+
+    if (comments) {
+        comments.comments.forEach((elem) => {
+            let comment = {
+                comment: elem.comment,
+                timestamp: elem.timestamp,
+                username: elem.userId.username,
+            };
+            data.comments.push(comment);
+        });
+    }
+
+    res.send(data);
+});
 
 router.post("/new", userAuth, async (req, res) => {
     const { error } = validateNewProject(req.body);
@@ -70,7 +103,6 @@ router.post("/new", userAuth, async (req, res) => {
 
     await project.save();
     return res.status(201).send(project._id);
-    
 });
 
 module.exports = router;

@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { date } = require("@hapi/joi");
 
 const commentSchema = new mongoose.Schema({
     projectId: {
@@ -21,10 +20,17 @@ const commentSchema = new mongoose.Schema({
         },
         timestamp: {
             type: Date,
-            default: Date.now()
+            required: true
+            // default: Date.now()
         }
     }]
 })
+
+// function getDate() {
+//     let d = new Date();
+//     let timestamp = d.toLocaleString();
+//     return timestamp;
+// }
 
 const Comment = new mongoose.model("Comment", commentSchema, "Comments");
 
