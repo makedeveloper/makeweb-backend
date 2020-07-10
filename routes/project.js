@@ -76,8 +76,6 @@ router.get("/:projectId", async (req, res) => {
         select: "username fullname",
     });
 
-    winston.debug(collaborators);
-
     const data = {
         projectDetails: project,
         comments: [],
