@@ -196,7 +196,11 @@ response-data: json object of the project
         "link": "http://domain.com",
         "lookingFor": "mentor",
         "idea": "Open source collaboration",
-        "userId": "5efb94ea93f42e431cb8bde4",
+        "owner": {
+            "_id": "5efb94ea93f42e431cb8bde4",
+            "fullname": "Shahryar Saify",
+            "username": "Shahryar-sss"
+        },
         "__v": 0
     },
     "comments": [
