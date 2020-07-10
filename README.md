@@ -256,7 +256,7 @@ request-data:
 ```
 {
     "comment": "Another sample comment",
-    "timestamp": "2020-07-10T12:30:19.762+00:00"    // Date object
+    "timestamp": "2020-07-10T12:30:19.762+00:00"    // must be Javascript Date object
 }
 ```
 response-data: `HTTP status 201 (Content Created)`
