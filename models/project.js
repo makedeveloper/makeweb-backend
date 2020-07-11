@@ -17,7 +17,9 @@ const projectSchema = new mongoose.Schema({
     },
     link: {
         type: String,
-        required: function () { this.isInitiated }
+        required: function () {
+            this.isInitiated;
+        },
     },
     stacks: {
         type: Array,
@@ -25,8 +27,8 @@ const projectSchema = new mongoose.Schema({
             validator: function (v) {
                 return v.length > 0;
             },
-            message: "A project must have atleast one stack."
-        }
+            message: "A project must have atleast one stack.",
+        },
     },
     fieldOfStudy: {
         type: Array,
@@ -34,12 +36,12 @@ const projectSchema = new mongoose.Schema({
             validator: function (v) {
                 return v.length > 0;
             },
-            message: "A project must have atleast one field of study."
-        }
+            message: "A project must have atleast one field of study.",
+        },
     },
     lookingFor: {
         type: String,
-        enum: ["mentor", "mentee", "both"],
+        enum: ["mentor", "mentee", "both", "none"],
         required: true,
     },
     idea: {
