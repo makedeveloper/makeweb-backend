@@ -7,6 +7,7 @@ const login = require('../routes/login')
 const project = require('../routes/project');
 const collaborator = require('../routes/collaborator');
 const comment = require('../routes/comment');
+const profile = require('../routes/profile');
 
 module.exports = function (app) {
     app.use(express.json());
@@ -16,6 +17,7 @@ module.exports = function (app) {
     app.use("/project", project);
     app.use("/collaborator", collaborator);
     app.use("/comment", comment);
+    app.use("/profile", profile);
 
     app.use(error);
 };
