@@ -22,6 +22,12 @@ function validateProfileData(body) {
     return schema.validate(body);
 }
 
+
+router.get('/', user_auth, async(req, res) => {
+    const user = await User.findById(req.user._id);
+    res.send(user);
+})
+
 router.post("/", user_auth, async (req, res) => {
     const { error } = validateProfileData(req.body);
     if (error) return res.status(400).send(error.details[0].message);
