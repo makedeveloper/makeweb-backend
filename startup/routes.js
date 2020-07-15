@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 
 const error = require('../middleware/error');
 
@@ -11,6 +12,7 @@ const profile = require('../routes/profile');
 
 module.exports = function (app) {
     app.use(express.json());
+    app.use(cors());
 
     app.use("/register", registration);
     app.use("/login", login);
