@@ -23,6 +23,7 @@ const projectSchema = new mongoose.Schema({
     },
     stacks: {
         type: Array,
+        required: true,
         validate: {
             validator: function (v) {
                 return v.length > 0;
@@ -32,6 +33,7 @@ const projectSchema = new mongoose.Schema({
     },
     fieldOfStudy: {
         type: Array,
+        required: true,
         validate: {
             validator: function (v) {
                 return v.length > 0;

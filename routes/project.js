@@ -24,8 +24,8 @@ function validateNewProject(body) {
                 otherwise: Joi.required(),
             })
             .label("Project Link"),
-        stacks: Joi.array().required().label("Stacks in use"),
-        fieldOfStudy: Joi.array().required().label("Field of Study"),
+        stacks: Joi.array().min(1).required().label("Stacks in use"),
+        fieldOfStudy: Joi.array().min(1).required().label("Field of Study"),
         lookingFor: Joi.string()
             .required()
             .valid("mentor", "mentee", "both", "none")
