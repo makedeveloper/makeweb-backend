@@ -60,6 +60,13 @@ router.post("/join", user_auth, async (req, res) => {
         return res
             .status(400)
             .send(`Project with ID: ${req.body.projectId} does not exist`);
+    
+    if (doesProjectExist.lookingFor === "none")
+        return res.status(400).send("This project is currently not accepting collaborators")
+    if (req.body.joinAs === "mentor" && doesProjectExist.lookingFor === "mentee")
+        return res.status(400).send("This project is currently not accepting mentors")
+    if (req.body.joinAs === "mentee" && doesProjectExist.lookingFor === "mentor")
+        return res.status(400).send("This project is currently not accepting mentees")
 
     let project = await Collaborator.findOne({
         projectId: req.body.projectId,
