@@ -281,6 +281,51 @@ request-data:
 ```
 response-data: `HTTP status 201 (Content Created)`
 
+## Profile
+### Update Profile
+endpoint: /profile  
+type: POST  
+request-header: x-auth-token  
+request-data:  
+```
+{
+    "fullname": "David Feachen",
+    "username": "david799",
+    "email": "david@gmail.co.in",
+    "stacks": ["MERN", "MEAN"],
+    "fieldOfStudy": ["MERN", "MEAN"],
+    "github": "https://github.com/john-doe",        //optional. Do NOT send if empty
+    "linkedIn": "https://linkedIn.com/john-doe"     //optional. Do NOT send if empty
+}
+```
+response: `HTTP status 201 (Content Created)`
+
+### Get Profile Data
+endpoint: /profile  
+type: GET  
+request-header: x-auth-token  
+response:
+```
+{
+    "stacks": [
+        "MERN",
+        "MEAN"
+    ],
+    "fieldOfStudy": [
+        "MERN",
+        "MEAN"
+    ],
+    "_id": "5efb94ea93f42e431cb8bde4",
+    "fullname": "David Feachen",
+    "username": "david799",
+    "email": "david@gmail.co.in",
+    "password": "$2a$10$AM84HCmYfMboiW2rpsdzEuIzFk9O2kbqHxLxqshc5RP4QmvOKp1BO",
+    "__v": 0,
+    "github": "https://github.com/john-doe",
+    "linkedIn": "https://linkedIn.com/john-doe"
+}
+```
+
 This is our basic UI for the front page (For Frontend visit this repo : [makeweb-frontend](https://github.com/makedeveloper/makeweb-frontend)
 
 ![makeproject 001](https://user-images.githubusercontent.com/43684300/86630089-ffe98280-bfe9-11ea-92df-9eb525aecb9d.jpeg)
