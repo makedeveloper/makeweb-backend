@@ -38,7 +38,29 @@ function validateNewProject(body) {
 
 router.get("/", userAuth, async (req, res) => {
     const projects = await Project.find({ userId: req.user._id });
-    res.send(projects);
+    
+    const collabs = await Collaborator.find().populate('projectId');
+    
+    let userProjects = {
+        owner: projects,
+        mentor: [],
+        mentee: []
+    }
+
+    collabs.forEach(collab => {
+        collab.mentors.forEach(mentor => {
+            if (mentor.userId == req.user._id) {
+                userProjects.mentor.push(collab.projectId);
+            }
+        })
+        collab.mentees.forEach(mentee => {
+            if (mentee.userId == req.user._id) {
+                userProjects.mentee.push(collab.projectId);
+            }
+        })
+    })
+
+    res.send(userProjects)
 });
 
 router.get("/all", async (req, res) => {
