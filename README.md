@@ -134,45 +134,70 @@ response-data: array of json objects, each object being one project
 endpoint: /project  
 type: GET  
 request-header: x-auth-token  
-response-data: array of json objects, each object being one project
+response-data: 
 ```
 // sample response
-[
-    {
-        "stacks": [
-            "MERN",
-            "MEAN"
-        ],
-        "fieldOfStudy": [
-            "Web Dev",
-            "Machine Learning"
-        ],
-        "_id": "5f05fd8f2fe6272c7822b023",
-        "name": "Make Developer",
-        "isInitiated": true,
-        "link": "http://domain.com",
-        "lookingFor": "mentor",
-        "idea": "Open source collaboration",
-        "userId": "5efb94ea93f42e431cb8bde4",
-        "__v": 0
-    },
-    {
-        "stacks": [
-            "MERN",
-        ],
-        "fieldOfStudy": [
-            "Web Dev",
-        ],
-        "_id": "5f0611532acfbc48c4b3cf61",
-        "name": "Make Developer",
-        "isInitiated": true,
-        "link": "http://domain.com",
-        "lookingFor": "mentor",
-        "idea": "Open source collaboration",
-        "userId": "5efb94ea93f42e431cb8bde4",
-        "__v": 0
-    }
-]
+{
+    "owner": [
+        {
+            "stacks": [
+                "MERN",
+                "MEAN"
+            ],
+            "fieldOfStudy": [
+                "Web Dev",
+                "Machine Learning"
+            ],
+            "_id": "5f07411154dd016500a8d585",
+            "name": "Make Developer",
+            "isInitiated": true,
+            "link": "http://domain.com",
+            "lookingFor": "mentor",
+            "idea": "Open source collaboration",
+            "userId": "5efb94ea93f42e431cb8bde4",
+            "__v": 0
+        },
+        {
+            "stacks": [
+                "MERN",
+                "MEAN"
+            ],
+            "fieldOfStudy": [
+                "Web Dev",
+                "Machine Learning"
+            ],
+            "_id": "5f0e7d65feee2656f01655d2",
+            "name": "Make Developer",
+            "isInitiated": true,
+            "link": "http://domain.com",
+            "lookingFor": "mentor",
+            "idea": "Open source collaboration",
+            "userId": "5efb94ea93f42e431cb8bde4",
+            "__v": 0
+        }
+    ],
+    "mentor": [
+        {
+            "stacks": [
+                "MERN",
+                "MEAN"
+            ],
+            "fieldOfStudy": [
+                "Web Dev",
+                "Machine Learning"
+            ],
+            "_id": "5f07411154dd016500a8d585",
+            "name": "Make Developer",
+            "isInitiated": true,
+            "link": "http://domain.com",
+            "lookingFor": "mentor",
+            "idea": "Open source collaboration",
+            "userId": "5efb94ea93f42e431cb8bde4",
+            "__v": 0
+        }
+    ],
+    "mentee": []
+}
 ```
 ### View particular project  
 endpoint: /project/< projectID >  
