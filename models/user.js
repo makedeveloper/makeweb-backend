@@ -50,21 +50,23 @@ const userSchema = new mongoose.Schema({
     },
     stacks: {
         type: Array,
-        validate: {
-            validator: function (v) {
-                return v.length > 0;
-            },
-            message: "A project must have atleast one stack.",
-        },
+        // validate: {
+        //     validator: function (v) {
+        //         return v.length > 0;
+        //     },
+        //     message: "A project must have atleast one stack.",
+        // },
+        // required: false
     },
     fieldOfStudy: {
         type: Array,
-        validate: {
-            validator: function (v) {
-                return v.length > 0;
-            },
-            message: "A project must have atleast one field of study.",
-        },
+        // validate: {
+        //     validator: function (v) {
+        //         return v.length > 0;
+        //     },
+        //     message: "A project must have atleast one field of study.",
+        // },
+        // required: false
     },
 });
 
