@@ -176,7 +176,7 @@ response-data:
             "__v": 0
         }
     ],
-    "mentor": [
+    "mentor": [             //PROJECTS WHERE CURRENT USER IS A MENTOR
         {
             "stacks": [
                 "MERN",
@@ -196,7 +196,7 @@ response-data:
             "__v": 0
         }
     ],
-    "mentee": []
+    "mentee": []        //PROJECTS WHERE CURRENT USER IS A MENTEE
 }
 ```
 ### View particular project  
@@ -243,17 +243,21 @@ response-data: json object of the project
     "mentors": [
         {
             "username": "David"
+            "userId": "5f43406169cd062724373e30"
         },
         {
             "username": "Sarah"
+            "userId": "3gy406169cd0627243S3x87"
         }
     ],
     "mentees": [
         {
             "username": "Magnus"
+            "userId": "7bh406169cd0627243S3w84"
         },
         {
             "username": "Harvey"
+            "userId": "5f43406169cd06271482sd6"
         }
     ]
 }
@@ -326,7 +330,7 @@ request-data:
 response: `HTTP status 201 (Content Created)`
 
 ### Get Profile Data
-endpoint: /profile  
+endpoint: /profile/< userID >  
 type: GET  
 request-header: x-auth-token  
 response:
@@ -344,7 +348,6 @@ response:
     "fullname": "David Feachen",
     "username": "david799",
     "email": "david@gmail.co.in",
-    "password": "$2a$10$AM84HCmYfMboiW2rpsdzEuIzFk9O2kbqHxLxqshc5RP4QmvOKp1BO",
     "__v": 0,
     "github": "https://github.com/john-doe",
     "linkedIn": "https://linkedIn.com/john-doe"

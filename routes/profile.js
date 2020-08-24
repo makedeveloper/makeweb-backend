@@ -23,8 +23,8 @@ function validateProfileData(body) {
 }
 
 
-router.get('/', user_auth, async(req, res) => {
-    const user = await User.findById(req.user._id);
+router.get('/:id', user_auth, async(req, res) => {
+    const user = await User.findById(req.params.id).select('-password');
     res.send(user);
 })
 

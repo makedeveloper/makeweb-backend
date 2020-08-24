@@ -127,6 +127,7 @@ router.get("/:projectId", async (req, res) => {
         collaborators.mentors.forEach((elem) => {
             let mentor = {
                 username: elem.userId.username,
+                userId: elem.userId._id
             };
             data.mentors.push(mentor);
         });
@@ -134,6 +135,7 @@ router.get("/:projectId", async (req, res) => {
         collaborators.mentees.forEach((elem) => {
             let mentee = {
                 username: elem.userId.username,
+                userId: elem.userId._id
             };
             data.mentees.push(mentee);
         });
