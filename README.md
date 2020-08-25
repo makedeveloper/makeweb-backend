@@ -51,7 +51,8 @@ request-data:
 response-data:  
 ```
 {
-    "username": "david789"
+    "username": "david789",
+    "id": "5f07411154dd016500a8d585"
 }
 ```
 response-header:  
@@ -72,7 +73,8 @@ request-data:
 response-data:  
 ```
 {
-    "username": "david789"
+    "username": "david789",
+    "id": "5f07411154dd016500a8d585"
 }
 ```
 response-header:  
